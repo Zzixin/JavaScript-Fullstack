@@ -6,9 +6,10 @@
 .container {
   display: flex;
   /* justify-content: center; */
+  /* put items in the center */
   /* align-items: center; */
   flex-direction: column;
-  margin: 1.2rem auto;
+  margin: 20px auto;
 }
 
 .Line {
@@ -25,25 +26,25 @@
   width: 45rem;
   /* put in the center */
   /* margin: auto; */
-  margin-left: 3rem;
+  margin-left: 48px;
 }
 
-.mytr,
-.myth {
+#table1 th,
+td {
   border: 1px solid rgb(190, 190, 190);
   text-align: center;
   padding: 10px 20px;
 }
 
-tr:nth-child(even) .mytr {
+#table1 tr:nth-child(even) td {
   background-color: rgb(250, 250, 250);
 }
 
-tr:nth-child(odd) .mytr {
+#table1 tr:nth-child(odd) td {
   background-color: rgb(245, 245, 245);
 }
 
-.myth {
+#table1 th {
   background-color: rgb(230, 230, 230);
 }
 
@@ -52,16 +53,16 @@ tr:nth-child(odd) .mytr {
   /* width: 60%; */
   width: 35rem;
   border: 2px solid rgb(220, 220, 220);
-  border-radius: 3rem;
+  border-radius: 48px;
   display: block;
   /* margin: auto; */
-  margin-left: 3rem;
-  padding-left: 2.5rem;
+  margin-left: 48px;
+  padding-left: 40px;
   font-size: 18px;
 }
 
 #textBox::placeholder {
-  font-size: 1.1rem;
+  font-size: 17px;
   opacity: 0.5;
   font-weight: bold;
 }
@@ -69,7 +70,7 @@ tr:nth-child(odd) .mytr {
 .MyList {
   font-size: 18px;
   font-family: Arial, Helvetica, sans-serif;
-  margin-left: 2rem;
+  margin-left: 32px;
   /* margin: auto; */
 }
 li {
@@ -77,12 +78,12 @@ li {
 }
 
 #cities {
-  margin-left: 3rem;
+  margin-left: 48px;
   /* margin: auto; */
   width: 12rem;
   padding: 4px 4px;
   border-radius: 4px;
   font-size: 16px;
   background-color: rgb(240, 240, 240);
-  margin-bottom: 10rem;
+  margin-bottom: 160px;
 }
