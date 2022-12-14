@@ -66,6 +66,7 @@ const createTableHeader = (header) => {
   });
   return newElement;
 };
+
 const createTableContent = (content) => {
   const newElement = document.createElement("tr");
   newElement.appendChild(createTableElement("td", content["Student Name"]));
@@ -113,6 +114,7 @@ createList = (type, list) => {
 div2.appendChild(createList("ol", list));
 div2.appendChild(createList("ul", list));
 document.body.appendChild(div2);
+
 /*
 
 Question 3
@@ -138,6 +140,7 @@ createOption = (ele) => {
   option.textContent = ele.content;
   return option;
 };
+
 createDropDownList = (dropDownList) => {
   const newElement = document.createElement("select");
   //newElement.name = "Cities";
@@ -147,5 +150,6 @@ createDropDownList = (dropDownList) => {
   });
   return newElement;
 };
+
 div3.appendChild(createDropDownList(dropDownList));
 document.body.appendChild(div3);
