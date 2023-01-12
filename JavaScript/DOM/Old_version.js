@@ -67,6 +67,7 @@ const createTableHeader = (header) => {
   return newElement;
 };
 
+// don't hardcode, use map
 const createTableContent = (content) => {
   const newElement = document.createElement("tr");
   newElement.appendChild(createTableElement("td", content["Student Name"]));
@@ -97,13 +98,14 @@ const list = ["HTML", "JavaScript", "CSS", "React", "Redux", "Java"];
 const div2 = createDiv();
 div2.appendChild(createTitle("List"));
 
-createListItem = (text) => {
+const createListItem = (text) => {
   const li = document.createElement("li");
   li.textContent = text;
   return li;
 };
 
-createList = (type, list) => {
+// foreach -> map
+const createList = (type, list) => {
   const newElement = document.createElement(type);
   list.forEach((ele) => {
     newElement.appendChild(createListItem(ele));
@@ -113,7 +115,7 @@ createList = (type, list) => {
 
 div2.appendChild(createList("ol", list));
 div2.appendChild(createList("ul", list));
-document.body.appendChild(div2);
+document.body.append(div2);
 
 /*
 
@@ -132,16 +134,17 @@ const dropDownList = [
   { value: "sanJose", content: "San Jose" },
 ];
 
+// foreach -> map
 const div3 = createDiv();
 div3.appendChild(createTitle("Dropdown"));
-createOption = (ele) => {
+const createOption = (ele) => {
   const option = document.createElement("option");
   option.value = ele.value;
   option.textContent = ele.content;
   return option;
 };
 
-createDropDownList = (dropDownList) => {
+const createDropDownList = (dropDownList) => {
   const newElement = document.createElement("select");
   //newElement.name = "Cities";
   newElement.id = "cities";
