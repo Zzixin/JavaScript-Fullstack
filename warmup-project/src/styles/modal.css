@@ -1,0 +1,102 @@
+/* location of the whole modal */
+.my-modal {
+  padding-top: 8%;
+}
+
+/* location of the modal title */
+.ms-auto {
+  padding-top: 15px;
+}
+
+#modal-form {
+  padding-inline-start: 20px;
+  padding-inline-end: 20px;
+}
+
+/* location of two inputs */
+#email-signUp {
+  margin-top: 5px;
+  color: rgb(110, 110, 110);
+  font-size: 15px;
+}
+#password-signUp {
+  margin-top: 15px;
+  margin-bottom: 26px;
+  color: rgb(110, 110, 110);
+  font-size: 15px;
+}
+
+#modal-button {
+  width: 100%;
+}
+
+/* css of sign up and forget password */
+#modal-footer-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-inline-end: 35px;
+  padding-inline-start: 35px;
+  margin-bottom: 35px;
+  font-size: 12px;
+  color: grey;
+}
+
+/* footer.js */
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.77);
+  padding: 20px 10px;
+  height: 80px;
+  background-color: black;
+  margin-top: 10px;
+  color: rgb(200, 200, 200);
+}
+
+/* header.js  */
+
+#header {
+  display: flex;
+  background-color: black;
+  color: white;
+  justify-content: space-around;
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
+#header a {
+  margin-top: 5px;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  flex-grow: 1;
+  padding-inline-start: 35px;
+}
+
+#header-search {
+  flex-grow: 2;
+}
+
+#header-signIn {
+  border: none;
+  color: white;
+  background-color: black;
+  font-weight: bold;
+  font-size: 12px;
+  flex-grow: 2;
+}
+
+#header-cart {
+  background-color: "transparent";
+  flex-shrink: 2;
+  margin-inline-end: 10px;
+}
+
+#header-money {
+  flex-shrink: 2;
+  margin: auto;
+  margin-inline-end: 40px;
+}
