@@ -1,8 +1,11 @@
 // we could put all todos into redux store
-import { ADD_TODO, MOD_TODO, DEL_TODO } from "../actions/index";
+// 接收action发送的东西
+import { ADD_TODO, MOD_TODO, DEL_TODO, INIT_TODO } from "../actions/index";
 
 export const reducer = (state = [], { type, payload }) => {
    switch (type) {
+      case INIT_TODO:
+         return [...payload];
       case ADD_TODO:
          return [...state, { ...payload }];
       case MOD_TODO:

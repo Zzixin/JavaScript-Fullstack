@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addTodo } from "../actions/index";
+import { addTodo, addTodo2 } from "../actions/index";
 
 const TodoInput = () => {
    //local state => user input  => create a todo object  => add the todo object to array of todos
@@ -16,7 +16,9 @@ const TodoInput = () => {
          return;
       }
 
+      // 两种写法都可以
       addTodo(dispatch)(userInput);
+      //dispatch(addTodo2(userInput));
       setUserInput("");
    };
 
