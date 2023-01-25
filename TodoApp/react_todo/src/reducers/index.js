@@ -1,6 +1,7 @@
-// we could put all todos into redux store
+//we could put all todos into redux store
 // 接收action发送的东西
 import { combineReducers } from 'redux';
+
 import {
   ADD_TODO,
   MOD_TODO,
@@ -21,6 +22,7 @@ export const reducer = (state = [], { type, payload }) => {
         if (payload !== index) {
           return todo;
         }
+
         return { ...todo, isCompleted: !todo.isCompleted };
       });
     case DEL_TODO:
@@ -29,7 +31,6 @@ export const reducer = (state = [], { type, payload }) => {
       return state;
   }
 };
-
 // state can be given a default value
 export const errorReducer = (
   state = { error: false, message: '' },

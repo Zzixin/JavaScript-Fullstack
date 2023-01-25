@@ -9,7 +9,6 @@ export const todoApi = {
       if (rejectPromise) {
         reject('Init todos failed');
       }
-
       // 0.5s 之后返回数据
       setTimeout(() => {
         resolve(JSON.parse(JSON.stringify(this.todos)));

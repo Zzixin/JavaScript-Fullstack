@@ -1,8 +1,8 @@
 .todo-completed {
-   text-decoration: line-through;
+  text-decoration: line-through;
 }
 
 li {
-   cursor: pointer;
-   user-select: none;
+  cursor: pointer;
+  user-select: none;
 }
