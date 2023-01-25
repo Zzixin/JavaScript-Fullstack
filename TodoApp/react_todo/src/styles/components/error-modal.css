@@ -1,0 +1,8 @@
+/* css文件不需要符合驼峰式命名 */
+
+.error-modal {
+   width: 500px;
+   height: 300px;
+   margin: auto;
+   border: 2px solid black;
+}

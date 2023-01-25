@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import TodoHeader from "./components/TodoHeader";
 import TodoInput from "./components/TodoInput";
 import TodoList from "./components/TodoList";
+import ErrorModal from "./components/ErrorModal";
 import { initTodo } from "./actions";
 import "./App.css";
 
@@ -16,12 +17,13 @@ function App() {
       initTodo(dispatch)();
    }, [dispatch]);
    return (
-      <div>
+      <>
          <TodoHeader todoHeaderContent={"Todo App"} />
          <TodoInput />
          <hr />
          <TodoList />
-      </div>
+         <ErrorModal />
+      </>
    );
 }
 

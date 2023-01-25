@@ -1,5 +1,5 @@
-const TodoHeader = ({ todoHeaderContent }) => {
-  return <h1>{todoHeaderContent}</h1>;
+const TodoHeader = ({ todoHeaderContent = 'Todo List' }) => {
+  return <h1 data-testid='todo-header-test1'>{todoHeaderContent}</h1>;
 };
 
 export default TodoHeader;
