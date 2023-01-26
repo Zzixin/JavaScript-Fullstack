@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import TodoHeader from '../../components/TodoHeader';
+import TodoHeader from '../../components/TodoHeader.js';
 // or you can write "test" like which in App.test.js
 
 describe('Todo Header is rendered correctly', () => {

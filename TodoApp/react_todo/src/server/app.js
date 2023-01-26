@@ -3,6 +3,13 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+// const { v4: uuidv4 } = require('uuid');
+import { v4 as uuidv4 } from 'uuid';
+
+//connect to database
+const connectToMongoose = require('./database/connect');
+const Todo = require('./database/model'); // model is an entity, can do some operations
+connectToMongoose();
 
 // var indexRouter = require('./routes/index');
 // var usersRouter = require('./routes/users');
@@ -27,34 +34,57 @@ app.use(express.static(path.join(__dirname, 'public')));
 // reflect: proxy
 
 // mock database
-let todos = [
-  { content: 'write some code', isCompleted: false },
-  { content: 'watch some movies', isCompleted: false },
-  { content: 'listen some music', isCompleted: false },
-];
+// database通过id进行查找
 
 const verifyTodoPayload = ({ req, isAddTodo = false }) => {
   return isAddTodo
     ? req.body && req.body.content && req.body.isCompleted !== undefined
-    : req.body && req.body.index >= 0 && req.body.index < todos.length;
+    : req.body && req.body.id;
 };
 
 //1. (GET method) => return all todos in the mock database
 // api address an callback function {request, response}
-app.get('/allTodos', (_, res) => {
-  // res.status(200).json
-  // default value for status is 200, and the default for get status is also 200. 所以这儿省略了
-  res.json(todos);
+app.get('/allTodos', async (_, res) => {
+  // 所有数据库操作都是异步操作
+  const todosDataBase = await Todo.find({});
+  const todoList = todosDataBase.map(({ content, isCompleted, id }) => {
+    return {
+      content,
+      isCompleted,
+      id,
+    };
+  });
+  res.json(todoList);
 });
 
 //2. (POST method) => pass content and isCompleted to the payload => add a todo
 // all the data will be put in the req.body. if we put { content: 'write some code', isCompleted: false }, content => req.body.content, isCompleted => req.body.req.isCompleted
-app.post('/addTodo', (req, res) => {
+app.post('/addTodo', async (req, res) => {
   if (verifyTodoPayload({ req, isAddTodo: true })) {
-    todos = [...todos, req.body];
-    res.status(201).json({
-      message: 'succeed',
-      status: '201',
+    // todos = [...todos, req.body];
+    const todo = new Todo({
+      content: req.body.content,
+      isCompleted: req.body.isCompleted,
+      id: uuidv4(),
+    });
+
+    const newTodo = todo.save();
+    if (todo == newTodo) {
+      res.status(201).json({
+        message: 'succeed',
+        status: '201',
+        newTodo: {
+          content: newTodo.content,
+          isCompleted: newTodo.isCompleted,
+          id: newTodo.id,
+        },
+      });
+      return;
+    }
+
+    res.status('400').json({
+      error: 'failed',
+      message: 'Add todo failed',
     });
     return;
   }
@@ -68,29 +98,48 @@ app.post('/addTodo', (req, res) => {
 
 //3. (PUT method) => pass the index of the todo to the paylaod => Mod a todo
 //index >=0 && index < todos.length
-app.put('/modTodo', (req, res) => {
+app.put('/modTodo', async (req, res) => {
   if (verifyTodoPayload({ req })) {
-    const index = req.body.index;
-    todos[index].isCompleted = !todos[index].isCompleted;
-    res.json({
-      message: 'succeed',
+    const id = req.body.id;
+    const queryResult = await Todo.findOne({ id: id }); // 属性: value
+    const { modifiedCount } = await queryResult.updateOne({
+      isCompleted: !queryResult.isCompleted,
+    });
+    // to see if is successful
+    if (modifiedCount) {
+      res.status('200').json({
+        message: 'update succeed',
+      });
+      return;
+    }
+
+    res.status('404').json({
+      error: 'update failed',
+      message: 'modify todo failed',
     });
     return;
   }
   //error handling
-  res.status(404).json({
+  res.status('404').json({
     error: 'failed',
     message: 'Input is not valid',
   });
 });
 
 //4. (DELETE method) => pass the index of the todo to the paylaod => delete a todo
-app.delete('/delTodo', (req, res) => {
+app.delete('/delTodo', async (req, res) => {
   if (verifyTodoPayload({ req })) {
-    const index = req.body.index;
-    todos = [...todos.slice(0, index), ...todos.slice(index + 1)];
-    res.json({
-      message: 'succeed',
+    const index = req.body.id;
+    const { deletedCount } = await Todo.deleteOne({ id: index });
+    if (deletedCount) {
+      res.status('200').json({
+        message: 'delete succceed',
+      });
+      return;
+    }
+    res.status('404').json({
+      error: 'delete failed',
+      message: 'delete todo failed',
     });
     return;
   }

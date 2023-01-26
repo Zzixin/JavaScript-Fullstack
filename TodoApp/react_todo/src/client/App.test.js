@@ -13,15 +13,15 @@ describe('Tesing Todo App', () => {
   };
 
   const oneTodoState = {
-    todos: [{ content: '111', isCompleted: false }],
+    todos: [{ content: '111', isCompleted: false, id: '111' }],
     error: { error: false, message: '' },
   };
 
   const threeTodoState = {
     todos: [
-      { content: '111', isCompleted: false },
-      { content: '222', isCompleted: false },
-      { content: '333', isCompleted: false },
+      { content: '111', isCompleted: false, id: '111' },
+      { content: '222', isCompleted: false, id: '222' },
+      { content: '333', isCompleted: false, id: '333' },
     ],
     error: { error: false, message: '' },
   };
@@ -49,7 +49,7 @@ describe('Tesing Todo App', () => {
       </Provider>
     );
 
-    expect(screen.getByTestId('111-0')).toBeInTheDocument();
+    expect(screen.getByTestId('111')).toBeInTheDocument();
   });
 });
 

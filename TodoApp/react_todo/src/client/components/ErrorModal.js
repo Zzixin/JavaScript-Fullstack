@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { closeErrorModal } from '../actions/index';
+import { closeErrorModal } from '../actions/index.js';
 import '../styles/components/error-modal.css';
 
 const ErrorModal = () => {

@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import TodoItem from './TodoItem';
+import TodoItem from './TodoItem.js';
 
 const TodoList = () => {
   // state: error state and todos state
@@ -7,14 +7,8 @@ const TodoList = () => {
   console.log(todos); // contain both todos and error message
   return (
     <ul>
-      {todos.map((todo, index) => {
-        return (
-          <TodoItem
-            todo={todo}
-            index={index}
-            key={`${todo.content}-${index}`}
-          />
-        );
+      {todos.map((todo) => {
+        return <TodoItem todo={todo} id={todo.id} />;
       })}
     </ul>
   );

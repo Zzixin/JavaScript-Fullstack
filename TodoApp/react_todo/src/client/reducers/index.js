@@ -18,15 +18,17 @@ export const reducer = (state = [], { type, payload }) => {
     case ADD_TODO:
       return [...state, { ...payload }];
     case MOD_TODO:
-      return state.map((todo, index) => {
-        if (payload !== index) {
+      return state.map((todo) => {
+        if (payload !== todo.id) {
           return todo;
         }
 
         return { ...todo, isCompleted: !todo.isCompleted };
       });
     case DEL_TODO:
-      return [...state.slice(0, payload), ...state.slice(payload + 1)];
+      return state.filter(({ id }) => {
+        return id !== payload;
+      });
     default:
       return state;
   }

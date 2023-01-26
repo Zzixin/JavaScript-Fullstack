@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addTodo, addTodo2 } from '../actions/index';
+import { addTodo, addTodo2 } from '../actions/index.js';
 
 const TodoInput = () => {
   //local state => user input  => create a todo object  => add the todo object to array of todos
